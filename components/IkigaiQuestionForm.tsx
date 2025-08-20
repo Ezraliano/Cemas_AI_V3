@@ -128,7 +128,7 @@ export function IkigaiQuestionForm() {
                 {currentQuestion.domain}
               </span>
             </div>
-            <CardTitle className="text-xl leading-relaxed">
+            <CardTitle className="text-lg sm:text-xl leading-relaxed">
               {currentQuestion.text}
             </CardTitle>
           </CardHeader>

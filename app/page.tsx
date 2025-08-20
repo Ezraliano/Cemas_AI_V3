@@ -3,9 +3,10 @@
 import { Button } from '@/components/ui/button';
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from '@/components/ui/card';
 import { Badge } from '@/components/ui/badge';
-import { ArrowRight, Brain, Heart, Target, Users, Sparkles, CheckCircle } from 'lucide-react';
+import { ArrowRight, Brain, Heart, Target, Users, Sparkles, CheckCircle, Menu } from 'lucide-react';
 import Link from 'next/link';
 import { motion } from 'framer-motion';
+import { Sheet, SheetContent, SheetTrigger } from '@/components/ui/sheet';
 
 const valueProps = [
   {
@@ -41,13 +42,37 @@ export default function HomePage() {
       <nav className="container mx-auto px-6 py-4">
         <div className="flex items-center justify-between">
           <div className="text-2xl font-bold text-primary">Cemas.AI</div>
+
+          {/* Desktop Navigation */}
           <div className="hidden md:flex items-center gap-6">
-            <Link href="/dashboard" className="text-muted-foreground hover:text-primary">
+            <Link href="/dashboard" className="text-sm font-medium text-muted-foreground hover:text-primary transition-colors">
               Dashboard
             </Link>
-            <Link href="/chat" className="text-muted-foreground hover:text-primary">
+            <Link href="/chat" className="text-sm font-medium text-muted-foreground hover:text-primary transition-colors">
               AI Coach
             </Link>
+          </div>
+
+          {/* Mobile Navigation */}
+          <div className="md:hidden">
+            <Sheet>
+              <SheetTrigger asChild>
+                <Button variant="outline" size="icon">
+                  <Menu className="h-5 w-5" />
+                  <span className="sr-only">Open menu</span>
+                </Button>
+              </SheetTrigger>
+              <SheetContent side="right">
+                <div className="grid gap-4 py-6">
+                  <Link href="/dashboard" className="text-lg font-medium text-muted-foreground hover:text-primary transition-colors">
+                    Dashboard
+                  </Link>
+                  <Link href="/chat" className="text-lg font-medium text-muted-foreground hover:text-primary transition-colors">
+                    AI Coach
+                  </Link>
+                </div>
+              </SheetContent>
+            </Sheet>
           </div>
         </div>
       </nav>
@@ -164,7 +189,7 @@ export default function HomePage() {
             </p>
           </motion.div>
 
-          <div className="grid md:grid-cols-4 gap-6 max-w-5xl mx-auto">
+          <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-4 gap-6 max-w-5xl mx-auto">
             {[
               { step: "1", title: "Profile Setup", desc: "Share basic info and consent", time: "2 min" },
               { step: "2", title: "Ikigai Assessment", desc: "20 questions on passion, mission, profession, vocation", time: "10 min" },
